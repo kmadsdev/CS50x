@@ -18,8 +18,6 @@ int main(void) {
         for (int i = 0; p1_word[i] != '\0'; i++) {
             pos = (toupper((char) p1_word[i]) - 65);
             if (0 <= pos && pos < 26) {
-                // printf("%i\n", pos);
-                // printf("%i\n", 0 <= pos && pos < 26);
                 p1_score += points[pos];
             }
         }
@@ -27,8 +25,6 @@ int main(void) {
         for (int i = 0; p2_word[i] != '\0'; i++) {
             pos = (toupper((char) p2_word[i]) - 65);
             if (0 <= pos && pos < 26) {
-                // printf("%i\n", pos);
-                // printf("%i\n", 0 <= pos && pos < 26);
                 p2_score += points[pos];
             }
         }
