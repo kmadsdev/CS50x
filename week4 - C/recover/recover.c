@@ -26,7 +26,6 @@ int main(int argc, char *argv[]) {
             if (outfile != NULL) {
                 fclose(outfile);
             }
-
             sprintf(filename, "%03i.jpg", filecount);
             outfile = fopen(filename, "w");
             filecount++;
