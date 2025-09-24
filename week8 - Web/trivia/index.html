@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const buttons = document.querySelectorAll(".section:nth-of-type(1) button");
+                const correctButtonIndex = 4;
+                const part1Section = document.querySelector(".section:nth-of-type(1)");
+                const feedback1 = document.createElement("p");
+                part1Section.appendChild(feedback1);
+                buttons.forEach((button, index) => {
+                    button.addEventListener("click", () => {
+                        buttons.forEach(btn => btn.style.backgroundColor = "");
+                        feedback1.textContent = "";
+                        if (index === correctButtonIndex) {
+                            button.style.backgroundColor = "green";
+                            feedback1.textContent = "Correct!";
+                        } else {
+                            button.style.backgroundColor = "red";
+                            feedback1.textContent = "Incorrect";
+                        }
+                    });
+                });
+                const correctAnswer = "switzerland";
+                const input = document.getElementById("free-response");
+                const button = document.getElementById("submit-free-response");
+                const feedback2 = document.getElementById("free-response-feedback");
+                button.addEventListener("click", () => {
+                    const answer = input.value.trim().toLowerCase();
+                    input.style.border = "";
+
+                    if (answer === correctAnswer) {
+                        input.style.border = "2px solid green";
+                        feedback2.textContent = "Correct!";
+                    } else {
+                        input.style.border = "2px solid red";
+                        feedback2.textContent = "Incorrect";
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+                <button>6 people per 1 sheep</button>
+                <button>3 people per 1 sheep</button>
+                <button>1 people per 1 sheep</button>
+                <button>1 people per 3 sheep</button>
+                <button>1 people per 6 sheep</button>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>In which country is it illegal to own only one guinea pig as a lone guinea pig might get lonely?</h3>
+                <div style="align-items: center;">
+                    <!-- Def not the right approach: putting fixed h & w values, but that's what we've got for today... -->
+                    <input id="free-response" style="height: 24px; width: 200px;">
+                    <button id="submit-free-response">Check Answer</button>
+                </div>
+                <p id="free-response-feedback"></p>
+            </div>
+        </div>
+    </body>
+</html>
