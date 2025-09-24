@@ -1,0 +1,56 @@
+#presentation{
+    width: 100vw;
+}
+#presentation .head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    margin: 15px 0 0 0; /* top right bottom left - TRBL */
+}
+#presentation .head h1{
+    font-size: 6em;
+    font-weight: bold;
+    color: #bbb;
+}
+#presentation .head p{
+    font-size: 2em;
+    color: #555;
+}
+#presentation .head p a{
+    color: #555;
+    transition-duration: .5s;
+}
+#presentation .head p a:hover{
+    color: #888;
+}
+#presentation .body #home-banner{
+    width: 100%;
+}
+
+hr{
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+#dontTellMalan{
+    transition-duration: 3s;
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    text-align: flex right;
+    padding: 75px;
+    background-color: #2e2e2e;
+}
+#dontTellMalan h1{
+    transition-duration: 1s;
+    font-size: 4em;
+    color: #222;
+}
+#dontTellMalan h1:hover{
+    transition-duration: 10s;
+    font-size: 8em;
+    color: #f00;
+}

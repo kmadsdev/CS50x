@@ -1,0 +1,28 @@
+#education{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#education h1{
+    margin: 35px 0 40px 0;
+    font-weight: bold;
+}
+
+#education .school{
+    margin: 0 0 50px 0;
+}
+#education .school h2{
+    font-weight: bold;
+}
+
+#education .school h3{
+    font-size: 1em;
+    color: #777;
+    font-weight: bold;
+}
+
+#education .school p, #education .school ul > li{
+    color: #eee;
+}

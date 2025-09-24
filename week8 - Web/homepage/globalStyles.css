@@ -1,0 +1,43 @@
+body{
+    font-family: 'Fira Sans', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #242424;
+    color: white;
+
+}
+
+/* footer */
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    font-size: 1.2em;
+    margin: 15px 0 15px 0;
+}
+footer p{
+    margin: 0;
+}
+footer p.sep{
+    margin: 0 10px 0 10px;
+    color: #777;
+}
+footer a{
+    transition-duration: .5s;
+    color: white;
+    text-decoration: none;
+}
+footer a#harvard:hover{
+    color: #f42;
+    text-decoration: underline;
+}
+footer a#github:hover{
+    color: #888;
+    text-decoration: underline;
+}
+footer a#linkedin:hover{
+    color: #0077b5;
+    text-decoration: underline;
+}

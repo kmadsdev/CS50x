@@ -1,0 +1,28 @@
+#experience{
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 20vw 0 20vw;
+}
+
+#experience h1{
+    margin: 35px 0 40px 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+#experience .workplace{
+    margin: 0 0 50px 0;
+}
+#experience .workplace h2{
+    font-weight: bold;
+}
+#experience .workplace h3{
+    font-size: 1em;
+    color: #777;
+    font-weight: bold;
+}
+#experience .workplace p, #experience .workplace ul > li{
+    color: #eee;
+}

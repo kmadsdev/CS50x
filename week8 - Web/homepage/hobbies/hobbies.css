@@ -1,0 +1,51 @@
+html{
+    height: 100%
+}
+
+#hobbies{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 7.5vh 25vw 5vh 25vw;
+}
+
+#hobbies h3{
+    margin: 10px 0 15px 0;
+}
+
+#hobbies hr{
+    color: #bbb;
+    height: 5px;
+    width: 100%;
+}
+
+hr{
+    color: #bbb;
+    height: 5px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#hobbies ul{
+    display: flex;
+    flex-direction: row;
+}
+
+#hobbies ul li{
+    margin: 0 25px 0 0;
+}
+
+
+/* #hobbies .workplace h2{
+    font-weight: bold;
+}
+#hobbies .workplace h3{
+    font-size: 1em;
+    color: #777;
+    font-weight: bold;
+}
+#hobbies .workplace p, #experience .workplace ul > li{
+    color: #eee;
+} */
