@@ -64,32 +64,33 @@ def index():
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    """Buy shares of stock"""
     if request.method == 'POST':
-        symbol = request.form.get('symbol')
+        symbol = request.form.get('symbol').upper()
         shares = request.form.get('shares')
         if not symbol:
-            return apology('Provide a symbol')
-        if not shares or not shares.isdigit() or int(shares) <= 0:
-            return apology('Invalid shares')
-
-        quote = lookup(symbol)
-        if not quote:
-            return apology('invalid symbol')
+            return apology('must provide symbol', 400)
+        if not shares.isdigit() or int(shares) <= 0:
+            return apology('invalid share count', 400)
         shares = int(shares)
-        user_id = session['user_id']
-        cash = db.execute('SELECT cash FROM users WHERE id = ?', user_id)[0]['cash']
-        cost = shares * quote['price']
-        if cash < cost:
-            return apology("You don't have enough cash! :(")
-
-        db.execute('UPDATE users SET cash = cash - ? WHERE id = ?', cost, user_id)
+        quote = lookup(symbol)
+        if quote is None:
+            return apology('invalid symbol', 400)
+        price = quote['price']
+        cost = price * shares
+        cash = db.execute('SELECT cash FROM users WHERE id = ?', session['user_id'])[0]['cash']
+        if cost > cash:
+            return apology('can\'t afford it! :(', 400)
         db.execute(
-            'INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)', 
-            user_id, quote["symbol"], shares, quote["price"]
+            'INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)',
+            session['user_id'], symbol, shares, price
         )
-        return redirect("/")
-    return render_template("buy.html")
+        db.execute(
+            'UPDATE users SET cash = cash - ? WHERE id = ?',
+            cost, session['user_id']
+        )
+        return redirect('/')
+    return render_template('buy.html')
+
 
 
 @app.route("/history")
@@ -175,23 +176,24 @@ def quote():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
     if request.method == 'POST':
+
         username = request.form.get('username')
         password = request.form.get('password')
         confirmation = request.form.get('confirmation')
 
+        if not username or not password or not confirmation:
+            return apology('must provide username and password', 400)
         if password != confirmation:
-            return apology('passwords do not match')
+            return apology('passwords do not match', 400)
+
         try:
-            db.execute(
-                'INSERT INTO users (username, hash) VALUES (?, ?)', username, generate_password_hash(password),
-            )
+            new_id = db.execute('INSERT INTO users (username, hash) VALUES (?, ?)', username, generate_password_hash(password),)
         except:
-            return apology('username taken')
+            return apology('username already exists', 400)
 
-        return redirect('/login')
-
+        session['user_id'] = new_id
+        return redirect('/')
     return render_template('register.html')
 
 
